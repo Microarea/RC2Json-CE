@@ -1,0 +1,89 @@
+﻿{
+  "id": "id_4fcd4dd6-050f-419b-9578-4f7081e6d775",
+  "rcId": 101,
+  "name": "IDD_FORMVIEW",
+  "type": 66,
+  "style": 8,
+  "x": 0,
+  "y": 0,
+  "width": 185,
+  "height": 93,
+  "child": true,
+  "fontSize": 8,
+  "fontName": "MS Shell Dlg",
+  "items": [
+    {
+      "id": "id_e7a0ca5d-5f2b-4ce9-a4da-88d9da87d8f5",
+      "rcId": 8369,
+      "name": "IDC_EDIT1",
+      "type": 13,
+      "x": 7,
+      "y": 26,
+      "width": 40,
+      "height": 14,
+      "autoHScroll": true
+    },
+    {
+      "id": "id_16b0583b-4d80-4e8d-91a4-528697539a4d",
+      "rcId": -1,
+      "name": "IDC_STATIC",
+      "type": 2,
+      "text": "Static",
+      "x": 7,
+      "y": 7,
+      "width": 46,
+      "height": 8,
+      "textAlign": 0
+    },
+    {
+      "id": "id_ecac800d-dc94-44d4-8538-5b05dad3b902",
+      "rcId": 8370,
+      "name": "IDC_BUTTON1",
+      "type": 3,
+      "text": "Button1",
+      "x": 128,
+      "y": 7,
+      "width": 50,
+      "height": 14
+    },
+    {
+      "id": "id_6ab23823-b346-4fe3-9053-37eaa8d127b2",
+      "rcId": 8371,
+      "name": "IDC_LIST1",
+      "type": 24,
+      "x": 7,
+      "y": 46,
+      "width": 48,
+      "height": 40,
+      "vScroll": true,
+      "sort": true,
+      "noIntegralHeight": true
+    },
+    {
+      "id": "id_09695a98-c8af-4b8d-9120-91005960fc3e",
+      "rcId": 8372,
+      "name": "IDC_COMBO1",
+      "type": 12,
+      "x": 48,
+      "y": 26,
+      "width": 48,
+      "height": 30,
+      "vScroll": true,
+      "comboType": 1,
+      "sort": true
+    },
+    {
+      "id": "id_9fdf29e2-c819-406c-94e2-1e5fbe192df0",
+      "rcId": 8373,
+      "name": "IDC_CHECK1",
+      "type": 11,
+      "text": "Check1",
+      "x": 69,
+      "y": 46,
+      "width": 39,
+      "height": 10,
+      "visible": false,
+      "auto": true
+    }
+  ]
+}
