@@ -72,10 +72,29 @@ namespace RC2Json
 		{
 			categoryName = "";
 			JsonUserDocuments docs = GetJsonUsers(rcFile);
-			if (!docs.hasFile)
-				return false;
-			string hjson = Path.ChangeExtension(rcFile, ".hjson");
-			return docs.FindDocumentFolder(hjson, out categoryName);
+			if (docs.hasFile)
+            {
+                string hjson = Path.ChangeExtension(rcFile, ".hjson");
+                if (docs.FindDocumentFolder(hjson, out categoryName))
+                    return true;
+            }
+
+            // tenta con euristica basata sul fatto che il nome del file inizia con "UI" 
+            // ed esiste una descirizone documento con lo stesso nome
+            string rcName = Path.GetFileNameWithoutExtension(rcFile);
+            if (!rcName.StartsWith("UI"))
+                return false;
+
+            string moduleObjFolder = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(rcFile)), "ModuleObjects");
+            string docNSpace = rcName.Substring(2);
+
+            if (Directory.Exists(Path.Combine(moduleObjFolder, docNSpace)))
+            {
+                categoryName = docNSpace;
+                return true;
+            }
+
+            return false;
 			
 		}
 
