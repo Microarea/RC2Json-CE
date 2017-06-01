@@ -17,16 +17,22 @@ namespace RC2Json
 
 		private JsonUserDocuments(string rcFile)
 		{
-			string subPath = "\\standard\\";
+			string subPath = "\\standard\\applications\\";
 			int idx = rcFile.IndexOf(subPath, StringComparison.InvariantCultureIgnoreCase);
 			if (idx == -1)
 			{
 				hasFile = false;
 				return;
 			}
-			string stdPath = rcFile.Substring(0, idx + subPath.Length);
-			string erpPath = Path.Combine(stdPath, "applications\\erp");
-			string xmlFile = Path.Combine(erpPath, JsonConstants.JSON_USERS_FILE);
+			string stdAppPath = rcFile.Substring(0, idx + subPath.Length);
+            int slash = rcFile.IndexOf("\\", idx + subPath.Length, StringComparison.InvariantCultureIgnoreCase);
+            if (slash == -1)
+            {
+                hasFile = false;
+                return;
+            }
+            string appPath = rcFile.Substring(0, slash);
+            string xmlFile = Path.Combine(appPath, JsonConstants.JSON_USERS_FILE);
 			if (!File.Exists(xmlFile))
 			{ 
 				hasFile = false;
