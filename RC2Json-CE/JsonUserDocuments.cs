@@ -13,6 +13,8 @@ namespace RC2Json
 		bool hasFile = false;
 		List<string> documents = new List<string>();
 		List<string> hjsons = new List<string>();
+        static Dictionary<string, string> documentNamespaces = new Dictionary<string, string>();
+
 		static JsonUserDocuments jsonUsers;
 
 		private JsonUserDocuments(string rcFile)
@@ -80,15 +82,16 @@ namespace RC2Json
             }
 
             // tenta con euristica basata sul fatto che il nome del file inizia con "UI" 
-            // ed esiste una descirizone documento con lo stesso nome
+            // ed esiste un documento o client doc con la stessa parte finale del namespace
             string rcName = Path.GetFileNameWithoutExtension(rcFile);
             if (!rcName.StartsWith("UI"))
                 return false;
 
-            string moduleObjFolder = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(rcFile)), "ModuleObjects");
+            LoadDocumentNamespaces(rcFile);
+
             string docNSpace = rcName.Substring(2);
 
-            if (Directory.Exists(Path.Combine(moduleObjFolder, docNSpace)))
+            if (documentNamespaces.ContainsKey(docNSpace))
             {
                 categoryName = docNSpace;
                 return true;
@@ -121,5 +124,71 @@ namespace RC2Json
 			return jsonUsers;
 
 		}
-	}
+
+        private static void LoadDocumentNamespaces(string rcFile)
+        {
+            if (documentNamespaces.Count > 0)
+                return;
+
+            string moduleObjFolder = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(rcFile)), "ModuleObjects");
+
+            //carica il DocumentObjects.xml
+            string documentObjectsFileName = Path.Combine(moduleObjFolder, "DocumentObjects.xml");
+            if (File.Exists(documentObjectsFileName))
+            {
+                XmlDocument xml = new XmlDocument();
+                try
+                {
+                    xml.Load(documentObjectsFileName);
+                    foreach (XmlElement el in xml.DocumentElement.FirstChild.ChildNodes)
+                    {
+                        string nSpace = el.GetAttribute("namespace");
+                        if (string.IsNullOrEmpty(nSpace))
+                            continue;
+
+                        string docName = nSpace.Substring(nSpace.LastIndexOf('.') + 1);
+                        if (string.IsNullOrEmpty(docName))
+                            continue;
+
+                        documentNamespaces.Add(docName, docName);
+                    }
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+
+            //carica il ClientDocumentObjects.xml
+            string clientDocumentObjectsFileName = Path.Combine(moduleObjFolder, "ClientDocumentObjects.xml");
+            if (File.Exists(clientDocumentObjectsFileName))
+            {
+                XmlDocument xml = new XmlDocument();
+                try
+                {
+                    xml.Load(clientDocumentObjectsFileName);
+                    foreach (XmlElement el in xml.DocumentElement.FirstChild.ChildNodes)
+                    {
+                        XmlElement cd = el.FirstChild as XmlElement;
+                        if (cd == null)
+                            continue;
+                        string nSpace = cd.GetAttribute("namespace");
+                        if (string.IsNullOrEmpty(nSpace))
+                            continue;
+
+                        string docName = nSpace.Substring(nSpace.LastIndexOf('.') + 1);
+                        if (string.IsNullOrEmpty(docName))
+                            continue;
+                        {
+                            documentNamespaces.Add(docName, docName);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+        }
+    }
 }
