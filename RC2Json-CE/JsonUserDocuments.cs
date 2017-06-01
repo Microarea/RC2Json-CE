@@ -17,28 +17,35 @@ namespace RC2Json
 
 		private JsonUserDocuments(string rcFile)
 		{
-			string subPath = "\\standard\\applications\\";
-			int idx = rcFile.IndexOf(subPath, StringComparison.InvariantCultureIgnoreCase);
-			if (idx == -1)
-			{
-				hasFile = false;
-				return;
-			}
-			string stdAppPath = rcFile.Substring(0, idx + subPath.Length);
-            int slash = rcFile.IndexOf("\\", idx + subPath.Length, StringComparison.InvariantCultureIgnoreCase);
-            if (slash == -1)
+            // cerca un file nel folder locale
+            string currDir = Path.GetDirectoryName(rcFile);
+            string xmlFile = Path.Combine(currDir, JsonConstants.JSON_USERS_FILE);
+            if (!File.Exists(xmlFile))
             {
-                hasFile = false;
-                return;
+                // cerca un file generico per la intera app
+			    string subPath = "\\standard\\applications\\";
+			    int idx = rcFile.IndexOf(subPath, StringComparison.InvariantCultureIgnoreCase);
+			    if (idx == -1)
+			    {
+				    hasFile = false;
+				    return;
+			    }
+			    string stdAppPath = rcFile.Substring(0, idx + subPath.Length);
+                int slash = rcFile.IndexOf("\\", idx + subPath.Length, StringComparison.InvariantCultureIgnoreCase);
+                if (slash == -1)
+                {
+                    hasFile = false;
+                    return;
+                }
+                string appPath = rcFile.Substring(0, slash);
+                 xmlFile = Path.Combine(appPath, JsonConstants.JSON_USERS_FILE);
+			    if (!File.Exists(xmlFile))
+			    { 
+				    hasFile = false;
+				    return;
+			    }
             }
-            string appPath = rcFile.Substring(0, slash);
-            string xmlFile = Path.Combine(appPath, JsonConstants.JSON_USERS_FILE);
-			if (!File.Exists(xmlFile))
-			{ 
-				hasFile = false;
-				return;
-			}
-			XmlDocument doc = new XmlDocument();
+            XmlDocument doc = new XmlDocument();
 			try
 			{
 				doc.Load(xmlFile);
