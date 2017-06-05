@@ -66,7 +66,6 @@ namespace RC2Json
 		public Point Location;
 		public WindowStyles Style;
 		public WindowExStyles ExStyle;
-		public int RCId = 0;
 
 		public BaseControlStructure()
 		{
@@ -79,11 +78,6 @@ namespace RC2Json
 		{
 			writer.WritePropertyName(JsonConstants.ID);
 			writer.WriteValue(Id);
-			if (RCId != 0)
-			{
-				writer.WritePropertyName(JsonConstants.RC_ID);
-				writer.WriteValue(RCId);
-			}
 
 			writer.WritePropertyName(JsonConstants.TYPE);
 			writer.WriteValue(Type);
@@ -536,16 +530,10 @@ namespace RC2Json
 	{ 
 		public string Id;
 		public List<AcceleratorStructure> Accelerators = new List<AcceleratorStructure>();
-		public int RCId = 0;
 
 		internal void WriteTo(JsonWriter writer)
 		{
 			writer.WriteStartObject();
-			if (RCId != 0)
-			{
-				writer.WritePropertyName(JsonConstants.RC_ID);
-				writer.WriteValue(RCId);
-			}
 			writer.WritePropertyName(JsonConstants.ID);
 			writer.WriteValue(Id);
 
@@ -571,17 +559,11 @@ namespace RC2Json
 		public bool Shift;
 		public bool VirtualKey;
 		public string Key;
-		public int RCId = 0;
 		public bool NoInvert;
 
 		internal void WriteTo(JsonWriter writer)
 		{
 			writer.WriteStartObject();
-			if (RCId != 0)
-			{
-				writer.WritePropertyName(JsonConstants.RC_ID);
-				writer.WriteValue(RCId);
-			}
 			writer.WritePropertyName(JsonConstants.ID);
 			writer.WriteValue(Id);
 

@@ -168,7 +168,6 @@ namespace RC2Json
 					if (!Directory.Exists(jsonCategoryFolder))
 						Directory.CreateDirectory(jsonCategoryFolder);
 					string jsonFile = Path.Combine(jsonCategoryFolder, string.Concat(dlg.Id, JsonConstants.JSON_FORM_EXT));
-					dlg.RCId = hrcParser.FindId(dlg.Id);
 					Diagnostic.WriteLine(string.Format("Generating json file '{0}'", jsonFile));
                  
 					//creo il file *.tbjson, uno per ogni risorsa di dialogo
