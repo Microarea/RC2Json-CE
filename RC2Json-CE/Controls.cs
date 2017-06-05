@@ -66,6 +66,7 @@ namespace RC2Json
 		public Point Location;
 		public WindowStyles Style;
 		public WindowExStyles ExStyle;
+        protected bool useLocation = true;
 
 		public BaseControlStructure()
 		{
@@ -104,13 +105,17 @@ namespace RC2Json
 				writer.WritePropertyName(JsonConstants.TEXT);
 				writer.WriteValue(s);
 			}
-			writer.WritePropertyName(JsonConstants.X);
-			writer.WriteValue(Location.X);
 
-			writer.WritePropertyName(JsonConstants.Y);
-			writer.WriteValue(Location.Y);
+            if (useLocation)
+            {
+                writer.WritePropertyName(JsonConstants.X);
+                writer.WriteValue(Location.X);
 
-			writer.WritePropertyName(JsonConstants.WIDTH);
+                writer.WritePropertyName(JsonConstants.Y);
+                writer.WriteValue(Location.Y);
+            }
+
+            writer.WritePropertyName(JsonConstants.WIDTH);
 			writer.WriteValue(Size.Width);
 
 			writer.WritePropertyName(JsonConstants.HEIGHT);
@@ -508,6 +513,7 @@ namespace RC2Json
 		{
 			Type = WndObjType.Panel;
 			this.context = context;
+            useLocation = false;
 		}
 		internal override void WriteTo(RCJsonWriter writer)
 		{
