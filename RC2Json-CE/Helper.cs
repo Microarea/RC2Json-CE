@@ -10,26 +10,6 @@ namespace RC2Json
 {
 	class Helper
 	{
-		internal static string ReadContext(string file)
-		{
-			using (StreamReader sr = new StreamReader(file))
-			{
-				JsonReader r = new JsonTextReader(sr);
-				bool contextFound = false;
-				while (r.Read())
-				{
-					if (r.TokenType == JsonToken.PropertyName && r.Value.Equals(JsonConstants.CONTEXT))
-					{
-						contextFound = true;
-					}
-					else if (contextFound)
-					{
-						return r.Value.ToString();
-					}
-				}
-			}
-			return "";
-		}
 		internal static string GetContextName(string filename)
 		{
 			return Path.GetFileNameWithoutExtension(filename).ToLower();

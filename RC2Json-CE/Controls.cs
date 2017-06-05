@@ -519,18 +519,6 @@ namespace RC2Json
 		{
 			writer.WriteStartObject();
 			base.WriteTo(writer);
-			writer.WritePropertyName(JsonConstants.CONTEXT);
-			writer.WriteValue(context);
-			/*if (FontSize != 0)
-			{
-				writer.WritePropertyName(JsonConstants.FONT_SIZE);
-				writer.WriteValue(FontSize);
-			}
-			if (!string.IsNullOrEmpty(FontName))
-			{
-				writer.WritePropertyName(JsonConstants.FONT_NAME);
-				writer.WriteValue(FontName);
-			}*/
 			writer.WritePropertyName(JsonConstants.ITEMS);
 			writer.WriteStartArray();
 			foreach (var item in Controls)

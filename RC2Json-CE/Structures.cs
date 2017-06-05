@@ -146,7 +146,6 @@ namespace RC2Json
 		public static string SHIFT = "shift";
 		public static string ALT = "alt";
 		public static string NO_INVERT = "noInvert";
-		public static string CONTEXT = "context";
 		public static string CONTROL_CLASS = "controlClass";
 		public static string GLOBAL_CONTEXT = "Global context";
 		public static string JSON_USERS_FILE = "jsonusers.xml";

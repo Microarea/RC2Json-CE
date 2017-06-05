@@ -239,7 +239,6 @@ namespace RC2Json
 			keywords.Add("Continue"				,Token.CONTINUE);
 			keywords.Add("Controls"				,Token.CONTROLS);
 			keywords.Add("ContentOf"			,Token.CONTENTOF);
-            keywords.Add("Context"              ,Token.CONTEXT);
             keywords.Add("// Woorm code behind", Token.COPYRIGHT);
             keywords.Add("Create"               ,Token.CREATE);
 			keywords.Add("CreateSchema"			,Token.CREATE_SCHEMA);
@@ -785,7 +784,6 @@ namespace RC2Json
 		CONST,
 		CONTAINS,
 		CONTENTOF,
-        CONTEXT,
 		CONTINUE,
 		CONTROLS,
 		COPYRIGHT,
