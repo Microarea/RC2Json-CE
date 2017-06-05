@@ -81,7 +81,7 @@ namespace RC2Json
 			writer.WriteValue(Id);
 
 			writer.WritePropertyName(JsonConstants.TYPE);
-			writer.WriteValue(Type);
+			writer.WriteValue(Type.ToString());
 			if ((int)Style != 0)
 			{
 				writer.WritePropertyName(JsonConstants.STYLE);
@@ -544,7 +544,7 @@ namespace RC2Json
 			writer.WriteValue(Id);
 
 			writer.WritePropertyName(JsonConstants.TYPE);
-			writer.WriteValue(WndObjType.Panel);
+			writer.WriteValue(WndObjType.Panel.ToString());
 
 			writer.WritePropertyName("accelerators");
 			writer.WriteStartArray();
