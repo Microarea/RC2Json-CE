@@ -1,5 +1,6 @@
 # RC2Json - Community Edition
-Tool di trasformazione dei files di descrizione interfaccia .RC in equivalenti in formato TB Json.
+Tool di trasformazione dei files di descrizione interfaccia .RC in equivalenti in formato TB Json. 
+Per una descrizione completa si veda [RC2Json-CE Wiki](https://github.com/Microarea/RC2Json-CE/wiki)
 ## Prerequisiti
 Si tratta di una applicazione C#, l'unico prerequisito è Visual Studio 2015.
 ## Installazione
