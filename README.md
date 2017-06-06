@@ -9,7 +9,7 @@ Clonare o scaricare il source code, quindi effettuare la build della solution.
 È un tool da command-line, quindi aprire un prompt di comandi per eseguirlo.  
 La sintassi per eseguirlo è:
 
-    RC2Json [comando] [file o cartelle]
+    RC2Json-CE [comando] [file o cartelle]
 
 ### Comando: /rc
 Questa è la funzionalità principale del tool: trasformare uno o più file in formato RC nella corrispondente sintassi TB Json.
