@@ -33,7 +33,6 @@ namespace RC2Json
 
         private void CompactFile(string file, bool allControls)
         {
-            SourceControl scc = new SourceControl();
 
             Console.WriteLine("Processing " + file);
             bool updated = false;
@@ -120,7 +119,6 @@ namespace RC2Json
             }
             if (updated)
             {
-                scc.CheckOutIfNeeded(file);
                 using (StreamWriter sw = new StreamWriter(file, false, Encoding.UTF8))
                 {
                     JsonTextWriter jtw = new JsonTextWriter(sw);
@@ -132,7 +130,6 @@ namespace RC2Json
                 string hjson = Path.ChangeExtension(file, ".hjson");
                 if (File.Exists(hjson))
                 {
-                    scc.CheckOutIfNeeded(hjson);
                     string[] lines = File.ReadAllLines(hjson);
                     using (StreamWriter sw = new StreamWriter(hjson, false, Encoding.UTF8))
                     {
