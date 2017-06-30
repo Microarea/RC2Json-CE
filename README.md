@@ -18,24 +18,6 @@ Se si indica il nome di un file, viene analizzato solo quello, se si indica una 
 Vengono analizzati solo i files `.rc` che hanno un corrispondente `.hrc`.  
 Vedi più sotto [Funzionamento](#funzionamento) per i dettagli della trasformazione effettuata.
 
-### Comando /checkrc
-TODO 
-
-### Comando /intellisense
-TODO 
-
-### Comando /updateprojects
-TODO 
-
-### Comando /updatesources
-TODO 
-
-### Comando /compact
-TODO 
-
-### Comando /cmp
-TODO 
-
 ## Funzionamento
 Il tool effettua la trasformazione applicando alcune regole e valutazioni euristiche.  
 I file di partenza (`.rc` e `.hrc`) non vengono modificati, quindi l'operazione si può effettuare anche più volte.
@@ -43,7 +25,7 @@ I file di partenza (`.rc` e `.hrc`) non vengono modificati, quindi l'operazione 
 Per ogni risorsa dialog (`DIALOG` e `DIALOGEX`) viene creata una coppia `.tbjson`-`.hjson` dallo stesso nome (es.: `IDD_BOXES.tbjson`).  
 Per decidere il folder di destinazione, si cerca di attribuire alla risorsa un namespace di documento, in questo modo:
 * Se il file inizia con `UI` (es.: `UIBoxes.rc`) si rimuove il prefisso e si cerca in `DocumentObjects.xml` e `ClientDocumentObjects.xml` un oggetto con lo stesso nome (es.: `Boxes`)
-* Se esiste un file `Jsonusers.xml` nella cartella del `.rc` o in quella dell'applicazione, si cerca un match tra nome file e namespace documento, il formato è il seguente:
+* Se esiste un file `Jsonusers.xml` nella cartella dell'applicazione, si cerca un match tra nome file e namespace documento, il formato è il seguente:
     ````xml
         <Documents>
           <Document hjson="UICollections.hjson" name="Collections" />
